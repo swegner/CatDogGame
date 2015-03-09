@@ -1,7 +1,7 @@
-﻿namespace CatDogGame
+﻿namespace InterviewQuestions
 {
     public interface ICatDogGame
     {
-        bool HasValidTransformation(string to, string from, IWordList dictionary);
+        bool HasValidTransformation(string from, string to, IWordList dictionary);
     }
 }

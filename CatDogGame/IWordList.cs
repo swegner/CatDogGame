@@ -1,4 +1,4 @@
-﻿namespace CatDogGame
+﻿namespace InterviewQuestions
 {
     public interface IWordList
     {

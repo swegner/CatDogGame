@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatDogGame", "CatDogGame\CatDogGame.csproj", "{322FB320-937D-477C-BA3E-62490AE50E5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatDogGame.Tests", "CatDogGame.Tests\CatDogGame.Tests.csproj", "{919FCA1E-9919-4E26-801E-C77783ECE636}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{322FB320-937D-477C-BA3E-62490AE50E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{322FB320-937D-477C-BA3E-62490AE50E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{322FB320-937D-477C-BA3E-62490AE50E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{919FCA1E-9919-4E26-801E-C77783ECE636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{919FCA1E-9919-4E26-801E-C77783ECE636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{919FCA1E-9919-4E26-801E-C77783ECE636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{919FCA1E-9919-4E26-801E-C77783ECE636}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

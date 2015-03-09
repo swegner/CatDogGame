@@ -7,7 +7,7 @@
     <ProjectGuid>{322FB320-937D-477C-BA3E-62490AE50E5E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CatDogGame</RootNamespace>
+    <RootNamespace>InterviewQuestions</RootNamespace>
     <AssemblyName>CatDogGame</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatDogGame.cs" />
     <Compile Include="ICatDogGame.cs" />
     <Compile Include="IWordList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThreeLetterWordList.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
