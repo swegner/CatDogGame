@@ -6,20 +6,26 @@ namespace InterviewQuestions.Tests
     {
         public static void ShouldHaveTransformationTo(this string from, string to)
         {
-            var hasTransformation = TestTransformation(@from, to);
+            var hasTransformation = CatDogTestHarness.TestTransformation(@from, to);
             Assert.IsTrue(hasTransformation);
         }
 
         public static void ShouldNotHaveTransformationTo(this string from, string to)
         {
-            var hasTransformation = TestTransformation(@from, to);
+            var hasTransformation = CatDogTestHarness.TestTransformation(@from, to);
             Assert.IsFalse(hasTransformation);
         }
-        
-        private static bool TestTransformation(string @from, string to)
+
+        public static void ShouldContain(this IWordList wordList, string word)
         {
-            bool hasTransformation = CatDogTestHarness.TestTransformation(@from, to);
-            return hasTransformation;
+            bool contains = wordList.Contains(word);
+            Assert.IsTrue(contains);
+        }
+
+        public static void ShouldNotContain(this IWordList wordList, string word)
+        {
+            bool contains = wordList.Contains(word);
+            Assert.IsFalse(contains);
         }
     }
 }
