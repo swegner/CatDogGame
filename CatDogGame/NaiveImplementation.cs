@@ -4,14 +4,21 @@ using System.Linq;
 
 namespace InterviewQuestions
 {
-    public class CatDogGame : ICatDogGame
+    public class NaiveImplementation : ICatDogGame
     {
-        public static ICatDogGame Create()
+        private readonly IWordList _dictionary;
+
+        private NaiveImplementation(IWordList dictionary)
         {
-            return new CatDogGame();
+            _dictionary = dictionary;
         }
 
-        public bool HasValidTransformation(string from, string to, IWordList dictionary)
+        public static ICatDogGame Create(IWordList dictionary)
+        {
+            return new NaiveImplementation(dictionary);
+        }
+
+        public bool HasValidTransformation(string from, string to)
         {
             from = from.ToLowerInvariant();
             to = to.ToLowerInvariant();
@@ -31,7 +38,7 @@ namespace InterviewQuestions
                     return true;
                 }
 
-                foreach (string neighbor in EnumerateNeighbors(currentFrom, dictionary))
+                foreach (string neighbor in EnumerateNeighbors(currentFrom, _dictionary))
                 {
                     if (!triedWords.Contains(neighbor))
                     {

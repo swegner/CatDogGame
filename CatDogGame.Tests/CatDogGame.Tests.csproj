@@ -53,6 +53,8 @@
     <Compile Include="AcceptanceTests.cs" />
     <Compile Include="AssertExtensions.cs" />
     <Compile Include="CatDogTestHarness.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="PerformanceTests.cs" />
     <Compile Include="ThreeLetterWordListTests.cs" />
   </ItemGroup>
   <ItemGroup>

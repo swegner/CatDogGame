@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatDogGame.cs" />
+    <Compile Include="NaiveImplementation.cs" />
     <Compile Include="ICatDogGame.cs" />
     <Compile Include="IWordList.cs" />
     <Compile Include="ThreeLetterWordList.cs" />

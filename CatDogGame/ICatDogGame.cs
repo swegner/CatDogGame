@@ -2,6 +2,6 @@
 {
     public interface ICatDogGame
     {
-        bool HasValidTransformation(string from, string to, IWordList dictionary);
+        bool HasValidTransformation(string from, string to);
     }
 }
