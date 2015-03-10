@@ -42,13 +42,15 @@
     <Compile Include="CatDogGame.cs" />
     <Compile Include="ICatDogGame.cs" />
     <Compile Include="IWordList.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreeLetterWordList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ThreeLetterWords.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
