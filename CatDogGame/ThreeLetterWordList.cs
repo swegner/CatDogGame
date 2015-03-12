@@ -1,31 +1,53 @@
 ﻿ using System;
+ using System.Collections;
  using System.Collections.Generic;
+ using System.Collections.Immutable;
  using System.IO;
- using System.Threading.Tasks;
 
 namespace InterviewQuestions
 {
     public class ThreeLetterWordList : IWordList
     {
         private const string WordListFile = "ThreeLetterWords.txt";
-        private HashSet<string> _words;
+        
+        private readonly ImmutableHashSet<string> _words;
 
         public static IWordList Create()
         {
             var wordList = new ThreeLetterWordList();
-            wordList.Initialize();
-
             return wordList;
         }
 
         private ThreeLetterWordList()
+            : this(ReadWordListFromFile(WordListFile))
         {
         }
 
-        private void Initialize()
+        private ThreeLetterWordList(ImmutableHashSet<string> words)
         {
-            var words = File.ReadAllLines(WordListFile);
-            _words = new HashSet<string>(words, StringComparer.OrdinalIgnoreCase);
+            _words = words;
+        }
+
+        public IWordList Without(string word)
+        {
+            ImmutableHashSet<string> newWordList = _words.Remove(word);
+            return new ThreeLetterWordList(newWordList);
+        }
+
+        private static ImmutableHashSet<string> ReadWordListFromFile(string wordListFile)
+        {
+            var words = File.ReadAllLines(wordListFile);
+            return ImmutableHashSet.Create(StringComparer.OrdinalIgnoreCase, words);
+        }
+
+        IEnumerator<string> IEnumerable<string>.GetEnumerator()
+        {
+            return ((ICollection<string>) _words).GetEnumerator();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return _words.GetEnumerator();
         }
 
         public bool Contains(string word)

@@ -67,6 +67,13 @@ namespace InterviewQuestions.Tests
             RunPerfTest(catDogGame);
         }
 
+        [TestMethod]
+        public void TestPrecomputedImplementation()
+        {
+            var catDogGame = PrecomputedImplementation.Create(_wordDictionary);
+            RunPerfTest(catDogGame);
+        }
+
         private void RunPerfTest(ICatDogGame catDogGame)
         {
             List<TimeSpan> timings = new List<TimeSpan>();

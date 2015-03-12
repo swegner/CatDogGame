@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace InterviewQuestions
 {
-    public class NaiveImplementation : ICatDogGame
+    public class NaiveImplementation : BaseImplementation, ICatDogGame
     {
         private readonly IWordList _dictionary;
 
@@ -42,8 +42,6 @@ namespace InterviewQuestions
                 {
                     if (!triedWords.Contains(neighbor))
                     {
-                        Trace.WriteLine(string.Format("{0} -> {1}", currentFrom, neighbor));
-
                         queue.Enqueue(neighbor);
                         triedWords.Add(neighbor);
                     }
@@ -51,24 +49,6 @@ namespace InterviewQuestions
             }
 
             return false;
-        }
-
-        private IEnumerable<string> EnumerateNeighbors(string word, IWordList dictionary)
-        {
-            for (int i = 0; i < word.Length; i++)
-            {
-                for (char newLetter = 'a'; newLetter <= 'z'; newLetter++)
-                {
-                    if (word[i] != newLetter)
-                    {
-                        string newWord = word.Substring(0, i) + newLetter + word.Substring(i + 1, word.Length - i - 1);
-                        if (dictionary.Contains(newWord))
-                        {
-                            yield return newWord;
-                        }
-                    }
-                }
-            }
         }
     }
 }
