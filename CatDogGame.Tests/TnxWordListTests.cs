@@ -10,7 +10,7 @@ namespace InterviewQuestions.Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            _wordList = TnxWordList.Create();
+            _wordList = WordList.Create();
         }
 
         [TestMethod]

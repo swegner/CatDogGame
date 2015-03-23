@@ -53,8 +53,7 @@
     <Compile Include="ICatDogGame.cs" />
     <Compile Include="IWordList.cs" />
     <Compile Include="PrecomputedImplementation.cs" />
-    <Compile Include="ThreeLetterWordList.cs" />
-    <Compile Include="TnxWordList.cs" />
+    <Compile Include="WordList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ThreeLetterWords.txt">

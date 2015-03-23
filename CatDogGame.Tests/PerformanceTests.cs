@@ -17,7 +17,7 @@ namespace InterviewQuestions.Tests
         public static void ClassInitialize(TestContext context)
         {
             _testContext = context;
-            _wordDictionary = TnxWordList.Create();
+            _wordDictionary = WordList.Create();
 
             GenerateInputPairs();
         }

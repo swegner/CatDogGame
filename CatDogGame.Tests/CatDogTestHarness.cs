@@ -6,7 +6,7 @@ namespace InterviewQuestions.Tests
     {
         public static bool TestTransformation(string from, string to)
         {
-            var wordList = TnxWordList.Create();
+            var wordList = WordList.Create();
             var naiveImplementation = NaiveImplementation.Create(wordList);
             var precomputedImplementation = PrecomputedImplementation.Create(wordList);
 
