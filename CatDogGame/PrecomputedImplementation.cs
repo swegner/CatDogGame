@@ -33,6 +33,11 @@ namespace InterviewQuestions
             }
         }
 
+        public string Name
+        {
+            get { return "Precomputed"; }
+        }
+
         private void EnqueueNeighbors(string word, Queue<string> queue, ref IWordList wordList)
         {
             foreach (var neighbor in EnumerateNeighbors(word, wordList))

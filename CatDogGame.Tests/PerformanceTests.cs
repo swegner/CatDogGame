@@ -9,28 +9,6 @@ namespace InterviewQuestions.Tests
     [TestClass]
     public class PerformanceTests
     {
-        private static readonly string[] SampleWords =
-        {
-            "aim",
-            "ate",
-            "buy",
-            "did",
-            "fee",
-            "hes",
-            "ilk",
-            "key",
-            "mad",
-            "mud",
-            "nut",
-            "own",
-            "pis",
-            "rev",
-            "sin",
-            "toe",
-            "way",
-            "yen",
-        };
-
         private static InputPair[] _inputPairs;
         private static IWordList _wordDictionary;
         private static TestContext _testContext;
@@ -39,67 +17,85 @@ namespace InterviewQuestions.Tests
         public static void ClassInitialize(TestContext context)
         {
             _testContext = context;
+            _wordDictionary = TnxWordList.Create();
+
             GenerateInputPairs();
-            _wordDictionary = ThreeLetterWordList.Create();
         }
 
         private static void GenerateInputPairs()
         {
-            const int numIterations = 1000;
-            _inputPairs = new InputPair[numIterations];
+            var iterationsPerLength = new[]
+            {
+                100, // 2
+                500, // 3
+                500, // 4
+                1000, // 5
+                500, // 6
+                100, // 7
+                100, // 8
+            };
 
             var random = new Random();
-            int numSampleWords = SampleWords.Length;
-                
-            for (int i = 0; i < numIterations; i++)
+            var wordsByLength = _wordDictionary
+                .GroupBy(word => word.Length)
+                .ToDictionary(g => g.Key, g => g.ToArray());
+
+            List<InputPair> inputPairs = new List<InputPair>();
+            for (int i = 0; i < iterationsPerLength.Length; i++)
             {
-                int fromIdx = random.Next(numSampleWords);
-                int toIdx = random.Next(numSampleWords);
+                int wordLength = i + 2;
+                var wordsOfLength = wordsByLength[wordLength];
+                int numWordsOfLength = wordsOfLength.Length;
 
-                _inputPairs[i] = InputPair.Create(SampleWords[fromIdx], SampleWords[toIdx]);
+                var from = wordsOfLength[random.Next(numWordsOfLength)];
+                var to = wordsOfLength[random.Next(numWordsOfLength)];
+
+                inputPairs.Add(InputPair.Create(from, to));
             }
+
+            _inputPairs = inputPairs.ToArray();
         }
 
         [TestMethod]
-        public void TestNaiveImplementation()
+        public void ComparePerf()
         {
-            var catDogGame = NaiveImplementation.Create(_wordDictionary);
-            RunPerfTest(catDogGame);
+            var naiveImplementation = NaiveImplementation.Create(_wordDictionary);
+            var precomputed = PrecomputedImplementation.Create(_wordDictionary);
+
+            RunPerfTest(naiveImplementation, precomputed);
         }
 
-        [TestMethod]
-        public void TestPrecomputedImplementation()
-        {
-            var catDogGame = PrecomputedImplementation.Create(_wordDictionary);
-            RunPerfTest(catDogGame);
-        }
-
-        private void RunPerfTest(ICatDogGame catDogGame)
+        private void RunPerfTest(params ICatDogGame[] catDogGames)
         {
             List<TimeSpan> timings = new List<TimeSpan>();
             Stopwatch stopwatch = Stopwatch.StartNew();
             var numIterations = _inputPairs.Length;
 
-            for (int i = 0; i < numIterations; i++)
+            foreach (var catDogGame in catDogGames)
             {
-                var inputPair = _inputPairs[i];
-                
-                stopwatch.Restart();
-                catDogGame.HasValidTransformation(inputPair.From, inputPair.To);
-                TimeSpan timing = stopwatch.Elapsed;
+                _testContext.WriteLine("Testing implementation: {0}", catDogGame.Name);
 
-                timings.Add(timing);
+                for (int i = 0; i < numIterations; i++)
+                {
+                    var inputPair = _inputPairs[i];
+
+                    stopwatch.Restart();
+                    catDogGame.HasValidTransformation(inputPair.From, inputPair.To);
+                    TimeSpan timing = stopwatch.Elapsed;
+
+                    timings.Add(timing);
+                }
+
+                var orderedTimings = timings.OrderBy(timing => timing);
+
+                _testContext.WriteLine("Average: {0}", orderedTimings.Average());
+                _testContext.WriteLine("Min: {0}", orderedTimings.First());
+                _testContext.WriteLine("Median: {0}", orderedTimings.ElementAt((numIterations/2)));
+                _testContext.WriteLine("75th Percentile: {0}", orderedTimings.ElementAt(((int) (numIterations*0.75))));
+                _testContext.WriteLine("90th Percentile: {0}", orderedTimings.ElementAt(((int) (numIterations*0.9))));
+                _testContext.WriteLine("Max: {0}", orderedTimings.Last());
+                _testContext.WriteLine("");
             }
-
-            var orderedTimings = timings.OrderBy(timing => timing);
-
-            _testContext.WriteLine("Average: {0}", orderedTimings.Average());
-            _testContext.WriteLine("Min: {0}", orderedTimings.First());
-            _testContext.WriteLine("Median: {0}", orderedTimings.ElementAt((numIterations / 2)));
-            _testContext.WriteLine("75th Percentile: {0}", orderedTimings.ElementAt(((int)(numIterations * 0.75))));
-            _testContext.WriteLine("90th Percentile: {0}", orderedTimings.ElementAt(((int)(numIterations * 0.9))));
-            _testContext.WriteLine("Max: {0}", orderedTimings.Last());
-
         }
 
         private class InputPair

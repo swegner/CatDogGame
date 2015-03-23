@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace InterviewQuestions
@@ -16,6 +15,11 @@ namespace InterviewQuestions
         public static ICatDogGame Create(IWordList dictionary)
         {
             return new NaiveImplementation(dictionary);
+        }
+
+        public string Name
+        {
+            get { return "Naive"; }
         }
 
         public bool HasValidTransformation(string from, string to)

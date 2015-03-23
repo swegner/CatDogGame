@@ -6,24 +6,11 @@
 
 namespace InterviewQuestions
 {
-    public class ThreeLetterWordList : IWordList
+    public abstract class WordList : IWordList
     {
-        private const string WordListFile = "ThreeLetterWords.txt";
-        
         private readonly ImmutableHashSet<string> _words;
 
-        public static IWordList Create()
-        {
-            var wordList = new ThreeLetterWordList();
-            return wordList;
-        }
-
-        private ThreeLetterWordList()
-            : this(ReadWordListFromFile(WordListFile))
-        {
-        }
-
-        private ThreeLetterWordList(ImmutableHashSet<string> words)
+        protected WordList(ImmutableHashSet<string> words)
         {
             _words = words;
         }
@@ -31,14 +18,10 @@ namespace InterviewQuestions
         public IWordList Without(string word)
         {
             ImmutableHashSet<string> newWordList = _words.Remove(word);
-            return new ThreeLetterWordList(newWordList);
+            return Create(newWordList);
         }
 
-        private static ImmutableHashSet<string> ReadWordListFromFile(string wordListFile)
-        {
-            var words = File.ReadAllLines(wordListFile);
-            return ImmutableHashSet.Create(StringComparer.OrdinalIgnoreCase, words);
-        }
+        protected abstract IWordList Create(ImmutableHashSet<string> words);
 
         IEnumerator<string> IEnumerable<string>.GetEnumerator()
         {
@@ -53,6 +36,38 @@ namespace InterviewQuestions
         public bool Contains(string word)
         {
             return _words.Contains(word);
+        }
+    }
+
+    public class ThreeLetterWordList : WordList
+    {
+        private const string WordListFile = "ThreeLetterWords.txt";
+
+        public static IWordList Create()
+        {
+            var wordList = new ThreeLetterWordList();
+            return wordList;
+        }
+
+        protected override IWordList Create(ImmutableHashSet<string> words)
+        {
+            return new ThreeLetterWordList(words);
+        }
+
+        private ThreeLetterWordList()
+            : this(ReadWordListFromFile(WordListFile))
+        {
+        }
+
+        private ThreeLetterWordList(ImmutableHashSet<string> words)
+            : base(words)
+        {
+        }
+
+        private static ImmutableHashSet<string> ReadWordListFromFile(string wordListFile)
+        {
+            var words = File.ReadAllLines(wordListFile);
+            return ImmutableHashSet.Create(StringComparer.OrdinalIgnoreCase, words);
         }
     }
 }

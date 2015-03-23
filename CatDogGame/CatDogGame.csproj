@@ -40,6 +40,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TNX.NamesAndPassword">
+      <HintPath>..\packages\TNX.WorldDictionary.1.0.3\lib\TNX.NamesAndPassword.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable">
+      <HintPath>..\packages\Zlib.Portable.1.9.2\lib\portable-net4+sl4+wp71+win8\Zlib.Portable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseImplementation.cs" />
@@ -48,6 +54,7 @@
     <Compile Include="IWordList.cs" />
     <Compile Include="PrecomputedImplementation.cs" />
     <Compile Include="ThreeLetterWordList.cs" />
+    <Compile Include="TnxWordList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ThreeLetterWords.txt">
