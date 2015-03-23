@@ -14,7 +14,7 @@ namespace InterviewQuestions.Tests
         [TestMethod]
         public void SimpleNegativeTest()
         {
-            "CAT".ShouldNotHaveTransformationTo("UFO");
+            "CAT".ShouldNotHaveTransformationTo("CPU");
         }
     }
 }

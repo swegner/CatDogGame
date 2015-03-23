@@ -55,7 +55,6 @@
     <Compile Include="CatDogTestHarness.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="PerformanceTests.cs" />
-    <Compile Include="ThreeLetterWordListTests.cs" />
     <Compile Include="TnxWordListTests.cs" />
   </ItemGroup>
   <ItemGroup>
