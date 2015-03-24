@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace InterviewQuestions.Tests
 {
     [TestClass]
-    public class TnxWordListTests
+    public class WordListTests
     {
         private IWordList _wordList;
 

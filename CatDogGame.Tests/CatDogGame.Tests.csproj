@@ -55,7 +55,7 @@
     <Compile Include="CatDogTestHarness.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="PerformanceTests.cs" />
-    <Compile Include="TnxWordListTests.cs" />
+    <Compile Include="WordListTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CatDogGame\CatDogGame.csproj">

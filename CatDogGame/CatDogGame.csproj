@@ -56,11 +56,6 @@
     <Compile Include="WordList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ThreeLetterWords.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
